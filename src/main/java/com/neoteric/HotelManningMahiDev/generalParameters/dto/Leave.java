@@ -1,0 +1,15 @@
+package com.neoteric.HotelManningMahiDev.generalParameters.dto;
+
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class Leave {
+    private String leaveType;
+    private int noOfDays;
+
+}
