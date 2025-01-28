@@ -11,6 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RoomTypeManager {
+    private Long id;
     private List<RoomType> roomTypes;
     private String total;
 }

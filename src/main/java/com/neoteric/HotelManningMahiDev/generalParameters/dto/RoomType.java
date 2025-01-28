@@ -8,9 +8,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RoomType {
+    private Long id;
     private String nameOfTheArea;
     private int keys;
     private int bays;
     private int totalBays;
     private double sqMt;
+
 }

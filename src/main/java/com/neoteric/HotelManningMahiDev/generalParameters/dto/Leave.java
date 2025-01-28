@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Leave {
+    private Long id;
     private String leaveType;
     private int noOfDays;
 

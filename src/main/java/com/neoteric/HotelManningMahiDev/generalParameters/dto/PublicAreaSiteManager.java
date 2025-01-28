@@ -10,7 +10,8 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PublicAreaSiteManger {
+public class PublicAreaSiteManager {
+    private Long id;
     private List<PublicAreaSites> publicAreaSites;
     private String total;
 }

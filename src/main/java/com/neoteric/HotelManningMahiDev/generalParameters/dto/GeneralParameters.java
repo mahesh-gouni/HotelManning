@@ -13,10 +13,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class GeneralParameters {
     private Long id;
-    //@NotNull( message = "Hotel Name is mandatory")@
-    @UserNameValid
+    @NotNull( message = "Hotel Name is mandatory")
+  //  @UserNameValid
     private int noOfHotelEntrances;
     @NotBlank(message = "Hotel Name is mandatory")
+   //@UserNameValid
     private String publicAreaSpace;
     @NotBlank(message = "Hotel publicAreaFloors is mandatory")
     private String publicAreaFloors;

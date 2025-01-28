@@ -1,6 +1,7 @@
 package com.neoteric.HotelManningMahiDev.generalParameters.dto;
 
 
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,12 +10,17 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class GeneralParaTotal {
-
+    private Long id;
+    @Valid
     private HotelInfo hotelInfo;
+    @Valid
     private GeneralParameters generalParameters;
-    private PublicAreaSiteManger publicAreaSiteManger;
+    @Valid
+    private PublicAreaSiteManager publicAreaSiteManager;
+    @Valid
     private RoomTypeManager roomTypeManager;
-    private LeavesManger leavesManger;
+    @Valid
+    private LeavesManager leavesManager;
 
 
 

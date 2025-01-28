@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 public class GeneralParametersEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "generalParametersId")
     private Long id;
     @Column(name ="noOfHotelEntrances" )
     private int noOfHotelEntrances;
@@ -33,4 +34,6 @@ public class GeneralParametersEntity {
     private int noOfClubFloorRooms;
     @Column(name ="avgLengthOfStay" )
     private double avgLengthOfStay;
+    @OneToOne(mappedBy = "generalParameters")
+    private GeneralParaTotalEntity generalParaTotalEntity;
 }

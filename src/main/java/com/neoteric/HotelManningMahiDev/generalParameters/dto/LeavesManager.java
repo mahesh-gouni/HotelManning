@@ -10,7 +10,8 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class LeavesManger {
+public class LeavesManager {
+    private Long id;
     private List<Leave> leaves;
     private String total;
     private String relieverFactor;

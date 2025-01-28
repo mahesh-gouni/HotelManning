@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PublicAreaSites {
+    private Long id;
     private String nameOfTheArea;
     private double sqMt;
 
