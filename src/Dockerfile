@@ -1,7 +1,5 @@
-FROM jenkins/jenkins:lts-jdk17
-
-USER root
-
-RUN curl -sSL https://get.docker.com/ | sh
-
-USER jenkins
+FROM openjdk:17
+WORKDIR /app
+COPY target/your-app-name.jar app.jar
+CMD ["java", "-jar", "app.jar"]
+EXPOSE 8085
