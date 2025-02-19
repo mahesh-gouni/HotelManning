@@ -2,8 +2,8 @@ package com.neoteric.HotelManningMahiDev.utilites;
 
 
 
-import com.neoteric.HotelManningMahiDev.generalParameters.dto.*;
-import com.neoteric.HotelManningMahiDev.generalParameters.entity.*;
+import com.neoteric.HotelManningMahiDev.hotelGobalData.generalParameters.dto.*;
+import com.neoteric.HotelManningMahiDev.hotelGobalData.generalParameters.entity.*;
 import com.neoteric.HotelManningMahiDev.registerApi.entity.UserEntity;
 import com.neoteric.HotelManningMahiDev.registerApi.modelOrDto.User;
 import org.modelmapper.ModelMapper;

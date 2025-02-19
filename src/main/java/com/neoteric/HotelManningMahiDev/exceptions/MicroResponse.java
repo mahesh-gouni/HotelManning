@@ -1,7 +1,7 @@
 package com.neoteric.HotelManningMahiDev.exceptions;
 
-import com.neoteric.HotelManningMahiDev.generalParameters.dto.GeneralParameters;
-import com.neoteric.HotelManningMahiDev.generalParameters.dto.Product;
+import com.neoteric.HotelManningMahiDev.hotelGobalData.generalParameters.dto.GeneralParameters;
+import com.neoteric.HotelManningMahiDev.hotelGobalData.generalParameters.dto.Product;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
