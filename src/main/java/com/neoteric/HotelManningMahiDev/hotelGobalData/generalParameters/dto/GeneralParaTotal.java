@@ -13,13 +13,13 @@ public class GeneralParaTotal {
     private Long id;
     @Valid
     private HotelInfo hotelInfo;
-    @Valid
+   @Valid
     private GeneralParameters generalParameters;
     @Valid
     private PublicAreaSiteManager publicAreaSiteManager;
     @Valid
     private RoomTypeManager roomTypeManager;
-    @Valid
+   @Valid
     private LeavesManager leavesManager;
 
 

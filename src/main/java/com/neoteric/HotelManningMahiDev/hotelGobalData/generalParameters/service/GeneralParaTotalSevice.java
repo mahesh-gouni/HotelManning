@@ -2,8 +2,10 @@ package com.neoteric.HotelManningMahiDev.hotelGobalData.generalParameters.servic
 
 import com.neoteric.HotelManningMahiDev.exceptions.ErrorResponse;
 //import com.neoteric.HotelManningMahiDev.generalParameters.dto.*;
+import com.neoteric.HotelManningMahiDev.hotelGobalData.generalParameters.controller.GeneralParaTotalController;
 import com.neoteric.HotelManningMahiDev.hotelGobalData.generalParameters.dto.*;
 //import com.neoteric.HotelManningMahiDev.generalParameters.repository.*;
+import com.neoteric.HotelManningMahiDev.hotelGobalData.generalParameters.entity.*;
 import com.neoteric.HotelManningMahiDev.hotelGobalData.generalParameters.repository.*;
 import com.neoteric.HotelManningMahiDev.utilites.MapperPointer;
 import jakarta.validation.Valid;
@@ -12,8 +14,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Logger;
+import java.util.stream.Collectors;
+
 @Service
 public class GeneralParaTotalSevice {
+    private static final Logger logger = Logger.getLogger(GeneralParaTotalSevice.class.getName());
+
     private final MapperPointer mapper;
     private final GeneralParaTotalRepository generalParaTotalRepository;
     private final GeneralParametersRepo generalParametersRepo;
@@ -44,55 +53,38 @@ public class GeneralParaTotalSevice {
     }
 
 
+//      @Transactional
+//   public ResponseEntity<ErrorResponse> addGeneralParaTotal(@Valid GeneralParaTotal generalParaTotal) {
+//  generalParametersRepo.save(mapper.convertToEntityGeneralParameters(generalParaTotal.getGeneralParameters()));
+//hotelInfoRepo.save(mapper.convertToEntityHotelInfo(generalParaTotal.getHotelInfo()));
+//publicAreaSitesManagerRepo.save(mapper.convertToEntityPublicAreaSiteManager(generalParaTotal.getPublicAreaSiteManager()));
+//roomTypeManagerRepo.save(mapper.convertToEntityRoomTypeManager(generalParaTotal.getRoomTypeManager()));
+//leaveManagerRepo.save(mapper.convertToEntityLeavesManger(generalParaTotal.getLeavesManager()));
+//generalParaTotalRepository.save(mapper.convertToEntityGeneralParaTotal(generalParaTotal));
+//        return new ResponseEntity<>(HttpStatus.CREATED);
+//      }
+
+
     @Transactional
     public ResponseEntity<ErrorResponse> addGeneralParaTotal(@Valid GeneralParaTotal generalParaTotal) {
-        GeneralParameters generalParameters = generalParaTotal.getGeneralParameters();
-        generalParametersRepo.save(mapper.convertToEntityGeneralParameters(generalParameters));
-        HotelInfo hotelInfo = generalParaTotal.getHotelInfo();
-        hotelInfoRepo.save(mapper.convertToEntityHotelInfo(hotelInfo));
-        PublicAreaSiteManager publicAreaSiteManager = generalParaTotal.getPublicAreaSiteManager();
-       publicAreaSitesManagerRepo.save(mapper.convertToEntityPublicAreaSiteManager(publicAreaSiteManager));
-        RoomTypeManager roomTypeManager = generalParaTotal.getRoomTypeManager();
-        roomTypeManagerRepo.save(mapper.convertToEntityRoomTypeManager(roomTypeManager));
-        LeavesManager leavesManager = generalParaTotal.getLeavesManager();
-       leaveManagerRepo.save(mapper.convertToEntityLeavesManger(leavesManager));
 
-//        GeneralParaTotal generalParaTotal1 = new GeneralParaTotal();
-//        generalParaTotal1.setGeneralParameters(generalParameters);
-       // generalParaTotal1.setHotelInfo(hotelInfo);
-//        generalParaTotal1.setPublicAreaSiteManager(publicAreaSiteManager);
-//        generalParaTotal1.setRoomTypeManager(roomTypeManager);
-//        generalParaTotal1.setLeavesManager(leavesManager);
+        generalParametersRepo.save(mapper.convertToEntityGeneralParameters(generalParaTotal.getGeneralParameters()));
+        hotelInfoRepo.save(mapper.convertToEntityHotelInfo(generalParaTotal.getHotelInfo()));
+        PublicAreaSiteManagerEntity publicAreaSiteManager = mapper.convertToEntityPublicAreaSiteManager(generalParaTotal.getPublicAreaSiteManager());
+        RoomTypeManagerEntity roomTypeManager = mapper.convertToEntityRoomTypeManager(generalParaTotal.getRoomTypeManager());
+        LeavesManagerEntity leavesManager = mapper.convertToEntityLeavesManger(generalParaTotal.getLeavesManager());
+        GeneralParaTotalEntity generalParaTotalEntity = mapper.convertToEntityGeneralParaTotal(generalParaTotal);
+        leavesManager.getLeaves().forEach(leave -> leave.setLeavesManager(leavesManager));
+        roomTypeManager.getRoomTypes().forEach(room -> room.setRoomTypeManager(roomTypeManager));
+        publicAreaSiteManager.getPublicAreaSites().forEach(site -> site.setSiteManager(publicAreaSiteManager));
+        publicAreaSitesManagerRepo.save(publicAreaSiteManager);
+        roomTypeManagerRepo.save(roomTypeManager);
+        leaveManagerRepo.save(leavesManager);
+        generalParaTotalRepository.save(generalParaTotalEntity);
 
-        generalParaTotalRepository.save(mapper.convertToEntityGeneralParaTotal(generalParaTotal));
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
 
-//    public ResponseEntity<ErrorResponse> addGeneralParaTotal(@Valid GeneralParaTotal generalParaTotal) {
-//        GeneralParameters generalParameters = generalParaTotal.getGeneralParameters();
-//        generalParametersRepo.save(mapper.convertToEntityGeneralParameters(generalParameters));
-//
-//        HotelInfo hotelInfo = generalParaTotal.getHotelInfo();
-//        hotelInfoRepo.save(mapper.convertToEntityHotelInfo(hotelInfo));
-//
-//        PublicAreaSiteManager publicAreaSiteManager = generalParaTotal.getPublicAreaSiteManager();
-////       List<PublicAreaSites> publicAreaSites = publicAreaSiteManager.getPublicAreaSites();
-////        publicAreaSites.stream()
-////                .map(mapper::convertToEntityPublicAreaSites)
-////                .forEach(publicAreaSitesRepo::save);
-//
-//            publicAreaSitesManagerRepo.save(mapper.convertToEntityPublicAreaSiteManager(publicAreaSiteManager));
-//            RoomTypeManager roomTypeManager = generalParaTotal.getRoomTypeManager();
-//            roomTypeManagerRepo.save(mapper.convertToEntityRoomTypeManager(roomTypeManager));
-//            LeavesManager leavesManager = generalParaTotal.getLeavesManager();
-//
-//            leaveManagerRepo.save(mapper.convertToEntityLeavesManger(leavesManager));
-//            return new ResponseEntity<>(HttpStatus.CREATED);
-//
-//
-//        }
 
-
-
-    }
+}

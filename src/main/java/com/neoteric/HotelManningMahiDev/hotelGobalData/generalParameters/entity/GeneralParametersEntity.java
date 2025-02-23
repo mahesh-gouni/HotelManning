@@ -9,8 +9,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "general_parameters")
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
+
 public class GeneralParametersEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

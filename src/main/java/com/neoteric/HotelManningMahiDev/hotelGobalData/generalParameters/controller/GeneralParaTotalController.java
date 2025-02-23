@@ -12,10 +12,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.logging.Logger;
+
 @RestController
 @RequestMapping("/api/v1/generalParaTotal")
 public class GeneralParaTotalController {
-
+    private static final Logger logger = Logger.getLogger(GeneralParaTotalController.class.getName());
     private final GeneralParaTotalSevice generalParaTotalSevice;
 
     public GeneralParaTotalController(GeneralParaTotalSevice generalParaTotalSevice) {
@@ -25,6 +27,7 @@ public class GeneralParaTotalController {
     @PostMapping("/create")
     public ResponseEntity<ErrorResponse> addGeneralParaTotal(@RequestBody @Valid GeneralParaTotal generalParaTotal) {
         generalParaTotalSevice.addGeneralParaTotal(generalParaTotal);
+        logger.info("General Parameters received at controller: " + generalParaTotal);
        //ErrorResponse errorResponse = new ErrorResponse(LocalDateTime.now(), HttpStatus.OK.value(), "Internal Server Error", ex.getMessage());
         return new ResponseEntity<>(HttpStatus.OK);
     }

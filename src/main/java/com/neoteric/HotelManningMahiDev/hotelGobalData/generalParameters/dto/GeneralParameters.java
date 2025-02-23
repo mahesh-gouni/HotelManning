@@ -33,6 +33,6 @@ public class GeneralParameters {
     @NotNull(message = "Hotel AvgLengthOfStay is mandatory")
     private double avgLengthOfStay;
 
-    private Product product;
+
 
 }
