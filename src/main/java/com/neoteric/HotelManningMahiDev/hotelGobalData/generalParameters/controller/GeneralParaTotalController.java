@@ -1,6 +1,7 @@
 package com.neoteric.HotelManningMahiDev.hotelGobalData.generalParameters.controller;
 
 
+import com.neoteric.HotelManningMahiDev.exceptions.ApiResponse;
 import com.neoteric.HotelManningMahiDev.exceptions.ErrorResponse;
 import com.neoteric.HotelManningMahiDev.hotelGobalData.generalParameters.dto.GeneralParaTotal;
 import com.neoteric.HotelManningMahiDev.hotelGobalData.generalParameters.service.GeneralParaTotalSevice;
@@ -25,11 +26,11 @@ public class GeneralParaTotalController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<ErrorResponse> addGeneralParaTotal(@RequestBody @Valid GeneralParaTotal generalParaTotal) {
+    public ResponseEntity<ApiResponse> addGeneralParaTotal(@RequestBody @Valid GeneralParaTotal generalParaTotal) {
         generalParaTotalSevice.addGeneralParaTotal(generalParaTotal);
         logger.info("General Parameters received at controller: " + generalParaTotal);
        //ErrorResponse errorResponse = new ErrorResponse(LocalDateTime.now(), HttpStatus.OK.value(), "Internal Server Error", ex.getMessage());
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(new ApiResponse(HttpStatus.OK.value(), "generalParameter is created"),HttpStatus.OK);
     }
 
 

@@ -48,7 +48,7 @@ private final ServicePlusRepository servicePlusRepository;
         ServicePlusEntity servicePlusEntity = servicePlusRepository.save(modelMapper.map(roomsDto.getServicePlus(), ServicePlusEntity.class));
         SpaOrFitnessAndRecreationEntity spaEntity = spaOrFitnessAndRecreationRepository.save(modelMapper.map(roomsDto.getSpaOrFitnessAndRecreation(), SpaOrFitnessAndRecreationEntity.class));
 
-        // Now map RoomsEntity and set the saved entities
+
         RoomsEntity roomsEntity = modelMapper.map(roomsDto, RoomsEntity.class);
         roomsEntity.setConcierge(conciergeEntity);
         roomsEntity.setFrontOffice(frontOfficeEntity);

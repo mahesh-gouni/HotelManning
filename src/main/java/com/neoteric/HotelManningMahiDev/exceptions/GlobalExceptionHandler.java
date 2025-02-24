@@ -1,5 +1,6 @@
 package com.neoteric.HotelManningMahiDev.exceptions;
 
+import org.hibernate.TransientObjectException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -22,6 +23,12 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(NoCredentialsFoundException.class)
     public ResponseEntity<ErrorResponse> NoCredentialsFoundException(NoCredentialsFoundException ex) {
         ErrorResponse errorResponse = new ErrorResponse(LocalDateTime.now(), HttpStatus.NOT_ACCEPTABLE.value(), "check  the Credentials", ex.getMessage());
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_ACCEPTABLE);
+    }
+
+    @ExceptionHandler(TransientObjectException.class)
+    public ResponseEntity<ErrorResponse> TransientObjectException(TransientObjectException e){
+        ErrorResponse errorResponse = new ErrorResponse(LocalDateTime.now(), HttpStatus.NOT_ACCEPTABLE.value(), "check the object saving in the service", e.getMessage());
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_ACCEPTABLE);
     }
 

@@ -1,6 +1,7 @@
 package com.neoteric.HotelManningMahiDev.hotelGobalData.commerical.controller;
 
 
+import com.neoteric.HotelManningMahiDev.exceptions.ApiResponse;
 import com.neoteric.HotelManningMahiDev.exceptions.ErrorResponse;
 import com.neoteric.HotelManningMahiDev.hotelGobalData.commerical.dto.CommercialDto;
 import com.neoteric.HotelManningMahiDev.hotelGobalData.commerical.service.CommercialService;
@@ -26,12 +27,13 @@ public CommercialController(CommercialService commercialService){
 }
 
     @PostMapping("/create")
-    public ResponseEntity<ErrorResponse> addingCommercial(@RequestBody @Valid CommercialDto commercialDto){
+    public ResponseEntity<ApiResponse> addingCommercial(@RequestBody @Valid CommercialDto commercialDto){
         logger.info("Commercial received: " + commercialDto);
     commercialService.addinCommercial(commercialDto);
 
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<>( new ApiResponse(HttpStatus.OK.value(), "Commercial is created"),HttpStatus.CREATED);
     }
+
 
 
 }

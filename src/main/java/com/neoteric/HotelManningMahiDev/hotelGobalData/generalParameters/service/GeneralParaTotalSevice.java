@@ -9,6 +9,7 @@ import com.neoteric.HotelManningMahiDev.hotelGobalData.generalParameters.entity.
 import com.neoteric.HotelManningMahiDev.hotelGobalData.generalParameters.repository.*;
 import com.neoteric.HotelManningMahiDev.utilites.MapperPointer;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,7 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class GeneralParaTotalSevice {
     private static final Logger logger = Logger.getLogger(GeneralParaTotalSevice.class.getName());
 
@@ -34,35 +36,26 @@ public class GeneralParaTotalSevice {
     private final RoomTypeRepo roomTypeRepo;
     private final PublicAreaSitesRepo publicAreaSitesRepo;
 
+//
+//    public GeneralParaTotalSevice(MapperPointer mapper, GeneralParaTotalRepository generalParaTotalRepository,
+//                                  GeneralParametersRepo generalParametersRepo, HotelInfoRepo hotelInfoRepo, LeaveRepo leaveRepo,
+//                                  LeaveManagerRepo leaveManagerRepo, PublicAreaSitesManagerRepo publicAreaSitesManagerRepo,
+//                                  RoomTypeManagerRepo roomTypeManagerRepo, RoomTypeRepo roomTypeRepo, PublicAreaSitesRepo publicAreaSitesRepo
+//    ) {
+//        this.mapper = mapper;
+//        this.generalParaTotalRepository = generalParaTotalRepository;
+//        this.generalParametersRepo = generalParametersRepo;
+//        this.hotelInfoRepo = hotelInfoRepo;
+//        this.leaveRepo = leaveRepo;
+//        this.leaveManagerRepo = leaveManagerRepo;
+//        this.publicAreaSitesManagerRepo = publicAreaSitesManagerRepo;
+//        this.roomTypeManagerRepo = roomTypeManagerRepo;
+//        this.roomTypeRepo = roomTypeRepo;
+//        this.publicAreaSitesRepo = publicAreaSitesRepo;
+//    }
 
-    public GeneralParaTotalSevice(MapperPointer mapper, GeneralParaTotalRepository generalParaTotalRepository,
-                                  GeneralParametersRepo generalParametersRepo, HotelInfoRepo hotelInfoRepo, LeaveRepo leaveRepo,
-                                  LeaveManagerRepo leaveManagerRepo, PublicAreaSitesManagerRepo publicAreaSitesManagerRepo,
-                                  RoomTypeManagerRepo roomTypeManagerRepo, RoomTypeRepo roomTypeRepo, PublicAreaSitesRepo publicAreaSitesRepo
-    ) {
-        this.mapper = mapper;
-        this.generalParaTotalRepository = generalParaTotalRepository;
-        this.generalParametersRepo = generalParametersRepo;
-        this.hotelInfoRepo = hotelInfoRepo;
-        this.leaveRepo = leaveRepo;
-        this.leaveManagerRepo = leaveManagerRepo;
-        this.publicAreaSitesManagerRepo = publicAreaSitesManagerRepo;
-        this.roomTypeManagerRepo = roomTypeManagerRepo;
-        this.roomTypeRepo = roomTypeRepo;
-        this.publicAreaSitesRepo = publicAreaSitesRepo;
-    }
 
 
-//      @Transactional
-//   public ResponseEntity<ErrorResponse> addGeneralParaTotal(@Valid GeneralParaTotal generalParaTotal) {
-//  generalParametersRepo.save(mapper.convertToEntityGeneralParameters(generalParaTotal.getGeneralParameters()));
-//hotelInfoRepo.save(mapper.convertToEntityHotelInfo(generalParaTotal.getHotelInfo()));
-//publicAreaSitesManagerRepo.save(mapper.convertToEntityPublicAreaSiteManager(generalParaTotal.getPublicAreaSiteManager()));
-//roomTypeManagerRepo.save(mapper.convertToEntityRoomTypeManager(generalParaTotal.getRoomTypeManager()));
-//leaveManagerRepo.save(mapper.convertToEntityLeavesManger(generalParaTotal.getLeavesManager()));
-//generalParaTotalRepository.save(mapper.convertToEntityGeneralParaTotal(generalParaTotal));
-//        return new ResponseEntity<>(HttpStatus.CREATED);
-//      }
 
 
     @Transactional

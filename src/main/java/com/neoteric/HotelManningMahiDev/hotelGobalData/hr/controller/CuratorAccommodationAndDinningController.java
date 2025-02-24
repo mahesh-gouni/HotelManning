@@ -1,5 +1,6 @@
 package com.neoteric.HotelManningMahiDev.hotelGobalData.hr.controller;
 
+import com.neoteric.HotelManningMahiDev.exceptions.ApiResponse;
 import com.neoteric.HotelManningMahiDev.exceptions.ErrorResponse;
 import com.neoteric.HotelManningMahiDev.hotelGobalData.hr.dto.CuratorAccommodationAndDinning;
 import com.neoteric.HotelManningMahiDev.hotelGobalData.hr.service.CuratorAccommodationAndDinningService;
@@ -18,9 +19,9 @@ public class CuratorAccommodationAndDinningController {
     public CuratorAccommodationAndDinningController(CuratorAccommodationAndDinningService curatorAccommodationAndDinningService){
         this.curatorAccommodationAndDinningService=curatorAccommodationAndDinningService;
     }
-    public ResponseEntity<ErrorResponse> addingCurator(@RequestBody @Valid CuratorAccommodationAndDinning curatorAccommodationAndDinning) {
+    public ResponseEntity<ApiResponse> addingCurator(@RequestBody @Valid CuratorAccommodationAndDinning curatorAccommodationAndDinning) {
         curatorAccommodationAndDinningService.addingCurator(curatorAccommodationAndDinning);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<>(new ApiResponse(HttpStatus.OK.value(), "curatroAccomodation is created"),HttpStatus.CREATED);
     }
 
 }
