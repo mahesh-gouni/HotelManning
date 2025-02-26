@@ -28,6 +28,6 @@ public class HotelInfoEntity {
     private int headCountForFBUInCluster;
     @Column(name = "ProjectedEmpHeadCount")
     private int ProjectedEmpHeadCount;
-    @OneToOne(mappedBy = "hotelInfo")
-    private GeneralParaTotalEntity generalParaTotal;
+//    @OneToOne(mappedBy = "hotelInfo")
+//    private GeneralParaTotalEntity generalParaTotal;
 }

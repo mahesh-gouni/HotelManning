@@ -2,7 +2,7 @@ package com.neoteric.HotelManningMahiDev.hotelGobalData.culinary.controller;
 
 import com.neoteric.HotelManningMahiDev.exceptions.ApiResponse;
 import com.neoteric.HotelManningMahiDev.hotelGobalData.culinary.dto.CulinaryTotalDto;
-import com.neoteric.HotelManningMahiDev.hotelGobalData.culinary.entity.CulinaryTotalEntity;
+//import com.neoteric.HotelManningMahiDev.hotelGobalData.culinary.entity.CulinaryTotalEntity;
 import com.neoteric.HotelManningMahiDev.hotelGobalData.culinary.service.CulinaryTotalService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

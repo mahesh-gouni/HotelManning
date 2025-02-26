@@ -33,6 +33,7 @@ public class GeneralParametersEntity {
     private int noOfClubFloorRooms;
     @Column(name ="avgLengthOfStay" )
     private double avgLengthOfStay;
-    @OneToOne(mappedBy = "generalParameters")
-    private GeneralParaTotalEntity generalParaTotalEntity;
+
+//    @OneToOne(mappedBy = "generalParameters")
+//    private GeneralParaTotalEntity generalParaTotalEntity;
 }

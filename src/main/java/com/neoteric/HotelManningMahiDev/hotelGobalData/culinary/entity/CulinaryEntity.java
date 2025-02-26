@@ -29,6 +29,6 @@ public class CulinaryEntity {
     @Column(name = "numberOfShifts")
     private int numberOfShifts;
 
-    @OneToOne(mappedBy = "culinaryEntity")
-    private CulinaryTotalEntity culinaryTotalEntity;
+//    @OneToOne(mappedBy = "culinaryEntity")
+//    private CulinaryTotalEntity culinaryTotalEntity;
 }

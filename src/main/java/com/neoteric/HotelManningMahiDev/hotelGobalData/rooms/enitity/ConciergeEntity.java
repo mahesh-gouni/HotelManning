@@ -15,6 +15,6 @@ public class ConciergeEntity {
     private Double averageDailyPickUpPerDropRequirement;
     @Column(name = "averageDailyPickUpPerDropNumbers")
     private Double averageDailyPickUpPerDropNumbers;
-    @OneToOne(mappedBy = "concierge")
-    private RoomsEntity rooms;
+//    @OneToOne(mappedBy = "concierge")
+//    private RoomsEntity rooms;
 }

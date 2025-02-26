@@ -15,6 +15,6 @@ public class CuratorDinningTwoEntity {
     private int numberOfKitchensConsideredForStewarding;
     @Column(name = "selectKitchenForStewarding")
     private String selectKitchenForStewarding;
-    @OneToOne(mappedBy = "curatorDinningTwoEntity")
-    private CulinaryTotalEntity culinaryTotalEntity;
+//    @OneToOne(mappedBy = "curatorDinningTwoEntity")
+//    private CulinaryTotalEntity culinaryTotalEntity;
 }

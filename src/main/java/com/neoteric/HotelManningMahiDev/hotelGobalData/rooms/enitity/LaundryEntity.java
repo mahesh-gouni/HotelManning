@@ -17,6 +17,6 @@ public class LaundryEntity {
     private Double averageDailyLaundryUsage;
     @Column(name = "averageDailyLaundry")
     private Double averageDailyLaundry;
-    @OneToOne(mappedBy = "laundry")
-    private RoomsEntity rooms;
+//    @OneToOne(mappedBy = "laundry")
+//    private RoomsEntity rooms;
 }

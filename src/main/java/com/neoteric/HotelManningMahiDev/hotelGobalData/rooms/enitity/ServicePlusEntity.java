@@ -14,6 +14,6 @@ public class ServicePlusEntity {
     private Long servicePlusId;
     @Column(name = "numberOfPABXConsoles")
     private int numberOfPABXConsoles;
-    @OneToOne(mappedBy = "servicePlus")
-    private RoomsEntity rooms;
+//    @OneToOne(mappedBy = "servicePlus")
+//    private RoomsEntity rooms;
 }

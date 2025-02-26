@@ -21,7 +21,7 @@ public class LeavesManagerEntity {
     private String total;
     @Column(name = "relieverFactor")
     private String relieverFactor;
-
-    @OneToOne(mappedBy = "leavesManager")
-    private GeneralParaTotalEntity generalParaTotal;
+//
+//    @OneToOne(mappedBy = "leavesManager")
+//    private GeneralParaTotalEntity generalParaTotal;
 }

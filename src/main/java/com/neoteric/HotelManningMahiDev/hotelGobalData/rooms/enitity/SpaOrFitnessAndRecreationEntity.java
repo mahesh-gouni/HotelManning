@@ -28,6 +28,6 @@ public class SpaOrFitnessAndRecreationEntity {
     private String estimatedPercentageOfInHouseGuestsAtThePool;
     @Column(name = "estimatedVolumeOfInHouseGuestsAtThePool")
     private String estimatedVolumeOfInHouseGuestsAtThePool;
-    @OneToOne(mappedBy = "spaOrFitnessAndRecreation")
-    private RoomsEntity rooms;
+//    @OneToOne(mappedBy = "spaOrFitnessAndRecreation")
+//    private RoomsEntity rooms;
 }

@@ -15,6 +15,6 @@ public class CuratorDinningEntity {
     private int numberOfProjectedDailyCoversInCuratorDinning;
     @Column(name = "projectedSeating")
     private int projectedSeating;
-    @OneToOne(mappedBy = "curatorDinningEntity")
-    private CulinaryTotalEntity culinaryTotalEntity;
+//    @OneToOne(mappedBy = "curatorDinningEntity")
+//    private CulinaryTotalEntity culinaryTotalEntity;
 }

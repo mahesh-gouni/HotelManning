@@ -1,6 +1,7 @@
 package com.neoteric.HotelManningMahiDev.hotelGobalData.security.service;
 
 
+import com.neoteric.HotelManningMahiDev.exceptions.ApiResponse;
 import com.neoteric.HotelManningMahiDev.exceptions.ErrorResponse;
 import com.neoteric.HotelManningMahiDev.hotelGobalData.security.dto.SecurityDto;
 import com.neoteric.HotelManningMahiDev.hotelGobalData.security.enity.SecurityEntity;
@@ -22,9 +23,9 @@ public SecurityService(SecurityRepository securityRepository,ModelMapper modelMa
 }
 
 
-    public ResponseEntity<ErrorResponse> addingSecurity(@Valid SecurityDto securityDto) {
+    public ResponseEntity<ApiResponse> addingSecurity(@Valid SecurityDto securityDto) {
         SecurityEntity securityEntity = modelMapper.map(securityDto, SecurityEntity.class);
         securityRepository.save(securityEntity);
-    return new ResponseEntity<>(HttpStatus.CREATED);
+    return new ResponseEntity<>(new ApiResponse(HttpStatus.OK.value(), "security is added"),HttpStatus.CREATED);
     }
 }

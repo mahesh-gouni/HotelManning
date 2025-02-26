@@ -21,7 +21,7 @@ public class RoomsOrFandBReservationsEntity {
     private int numberOfShiftsInRestaurantReservations;
     @Column(name = "numberOfAdvisorsPerTeamLeader")
     private int numberOfAdvisorsPerTeamLeader;
-    @OneToOne(mappedBy = "roomsOrFandBReservationsEntity")
-    private CommercialEntity commercialEntity;
+//    @OneToOne(mappedBy = "roomsOrFandBReservationsEntity")
+//    private CommercialEntity commercialEntity;
 
 }

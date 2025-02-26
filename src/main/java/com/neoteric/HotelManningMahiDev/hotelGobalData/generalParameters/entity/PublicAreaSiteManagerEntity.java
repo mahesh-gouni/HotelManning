@@ -19,7 +19,7 @@ public class PublicAreaSiteManagerEntity {
     private List<PublicAreaSitesEntity> publicAreaSites = new ArrayList<>();
     @Column(name = "total")
     private String total;
-
-    @OneToOne(mappedBy = "publicAreaSiteManager")
-    private GeneralParaTotalEntity generalParaTotal;
+//
+//    @OneToOne(mappedBy = "publicAreaSiteManager")
+//    private GeneralParaTotalEntity generalParaTotal;
 }

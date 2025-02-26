@@ -33,8 +33,8 @@ public class FrontOfficeEntity {
     private int clubFloorRooms;
     @Column(name = "shifts")
     private int shifts;
-
-@OneToOne(mappedBy = "frontOffice")
-    private RoomsEntity roomsEntity;
+//
+//@OneToOne(mappedBy = "frontOffice")
+//    private RoomsEntity roomsEntity;
 
 }

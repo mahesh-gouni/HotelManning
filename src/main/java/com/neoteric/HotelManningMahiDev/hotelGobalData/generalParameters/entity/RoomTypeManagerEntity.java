@@ -21,6 +21,6 @@ public class RoomTypeManagerEntity {
     @Column(name = "total")
     private String total;
 
-    @OneToOne(mappedBy = "roomTypeManager")
-    private GeneralParaTotalEntity generalParaTotal;
+//    @OneToOne(mappedBy = "roomTypeManager")
+//    private GeneralParaTotalEntity generalParaTotal;
 }

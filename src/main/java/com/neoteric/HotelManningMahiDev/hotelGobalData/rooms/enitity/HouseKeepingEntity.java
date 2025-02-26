@@ -21,6 +21,6 @@ public class HouseKeepingEntity {
     private int numberBaysPerRoomAttendant;
     @Column(name = "publicAreaSpace")
     private String publicAreaSpace;
-    @OneToOne(mappedBy = "houseKeeping")
-    private RoomsEntity rooms;
+//    @OneToOne(mappedBy = "houseKeeping")
+//    private RoomsEntity rooms;
 }

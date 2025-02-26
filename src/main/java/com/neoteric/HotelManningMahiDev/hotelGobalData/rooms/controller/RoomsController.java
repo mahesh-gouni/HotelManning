@@ -1,6 +1,7 @@
 package com.neoteric.HotelManningMahiDev.hotelGobalData.rooms.controller;
 
 
+import com.neoteric.HotelManningMahiDev.exceptions.ApiResponse;
 import com.neoteric.HotelManningMahiDev.exceptions.ErrorResponse;
 import com.neoteric.HotelManningMahiDev.hotelGobalData.rooms.dto.RoomsDto;
 import com.neoteric.HotelManningMahiDev.hotelGobalData.rooms.service.RoomsService;
@@ -23,9 +24,9 @@ public class RoomsController {
    }
 
     @PostMapping("/create")
-   public ResponseEntity<ErrorResponse> addingRoom(@RequestBody @Valid RoomsDto roomsDto) {
+   public ResponseEntity<ApiResponse> addingRoom(@RequestBody @Valid RoomsDto roomsDto) {
       roomsService.addingRoom(roomsDto);
-       return new ResponseEntity<>(HttpStatus.OK);
+       return new ResponseEntity<>(new ApiResponse(HttpStatus.OK.value(), "room is created"),HttpStatus.OK);
    }
 
 }

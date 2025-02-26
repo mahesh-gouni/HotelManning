@@ -13,6 +13,6 @@ public class SalesEntity {
     private Long salesId;
     @Column(name = "numberOfSegments")
     private int numberOfSegments;
-    @OneToOne(mappedBy = "salesEntity")
-    private CommercialEntity commercialEntity;
+//    @OneToOne(mappedBy = "salesEntity")
+//    private CommercialEntity commercialEntity;
 }

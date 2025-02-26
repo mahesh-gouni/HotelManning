@@ -9,7 +9,7 @@ import com.neoteric.HotelManningMahiDev.registerApi.entity.UserEntity;
 import com.neoteric.HotelManningMahiDev.registerApi.modelOrDto.Login;
 import com.neoteric.HotelManningMahiDev.registerApi.modelOrDto.User;
 import com.neoteric.HotelManningMahiDev.registerApi.repo.UserRepo;
-import com.neoteric.HotelManningMahiDev.utilites.MapperPointer;
+//import com.neoteric.HotelManningMahiDev.utilites.MapperPointer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -22,21 +22,21 @@ public class UserService {
     private static final Logger logger = Logger.getLogger(UserService.class.getName());
 
     private UserRepo userRepo;
-    private MapperPointer mapperPointer;
+ //   private MapperPointer mapperPointer;
 
-    public UserService(UserRepo userRepo, MapperPointer mapperPointer) {
-        this.userRepo = userRepo;
-        this.mapperPointer = mapperPointer;
-    }
+//    public UserService(UserRepo userRepo, MapperPointer mapperPointer) {
+//        this.userRepo = userRepo;
+//        this.mapperPointer = mapperPointer;
+//    }
 
     public ResponseEntity<ErrorResponse> register(User user) {
         logger.info("user before converting to entity in service"+user);
-        UserEntity userEntity = mapperPointer.convertToEntity(user);
-        logger.info("user after converting to entity in service"+userEntity);
+     //   UserEntity userEntity = mapperPointer.convertToEntity(user);
+       // logger.info("user after converting to entity in service"+userEntity);
         if (userRepo.findById(user.getEmail()).isPresent()) {
             throw new EmailAlreadyTakenException("Email already taken"+user.getEmail());
         }
-        userRepo.save(userEntity);
+      //  userRepo.save(userEntity);
         logger.info("User successfully registered with email: ");
         if (userRepo.findById(user.getMobile()).isPresent()) {
             throw new EmailAlreadyTakenException("Mobile number already taken" + user.getMobile());
