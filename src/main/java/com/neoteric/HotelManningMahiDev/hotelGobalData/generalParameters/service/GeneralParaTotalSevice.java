@@ -1,5 +1,6 @@
 package com.neoteric.HotelManningMahiDev.hotelGobalData.generalParameters.service;
 
+import com.neoteric.HotelManningMahiDev.aop.TrackExecutionTime;
 import com.neoteric.HotelManningMahiDev.exceptions.ApiResponse;
 import com.neoteric.HotelManningMahiDev.exceptions.ErrorResponse;
 //import com.neoteric.HotelManningMahiDev.generalParameters.dto.*;
@@ -83,6 +84,7 @@ public class GeneralParaTotalSevice {
 //    }
 
   @Transactional
+  @TrackExecutionTime
  public ResponseEntity<ApiResponse> addGeneralParaTotal(@Valid GeneralParaTotal generalParaTotal) {
 generalParametersRepo.save(modelMapper.map(generalParaTotal.getGeneralParameters(), GeneralParametersEntity.class));
 hotelInfoRepo.save(modelMapper.map(generalParaTotal.getHotelInfo(), HotelInfoEntity.class));

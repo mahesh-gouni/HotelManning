@@ -1,6 +1,7 @@
 package com.neoteric.HotelManningMahiDev.hotelGobalData.culinary.service;
 
 
+import com.neoteric.HotelManningMahiDev.aop.TrackExecutionTime;
 import com.neoteric.HotelManningMahiDev.exceptions.ApiResponse;
 import com.neoteric.HotelManningMahiDev.exceptions.ErrorResponse;
 import com.neoteric.HotelManningMahiDev.hotelGobalData.culinary.dto.CulinaryTotalDto;
@@ -31,6 +32,7 @@ public class CulinaryTotalService {
     private final CulinaryRepository culinaryRepository;
     private final CuratorDinningTwoRepository curatorDinningTwoRepository;
     @Transactional
+    @TrackExecutionTime
     public ResponseEntity<ErrorResponse> adding(@Valid CulinaryTotalDto culinaryTotalDto) {
      culinaryRepository.save(modelMapper.map(culinaryTotalDto.getCulinaryDto(), CulinaryEntity.class));
         curatorDinningRepository.save(modelMapper.map(culinaryTotalDto.getCuratorDinningDto(), CuratorDinningEntity.class));

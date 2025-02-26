@@ -1,5 +1,6 @@
 package com.neoteric.HotelManningMahiDev.hotelGobalData.rooms.service;
 
+import com.neoteric.HotelManningMahiDev.aop.TrackExecutionTime;
 import com.neoteric.HotelManningMahiDev.exceptions.ErrorResponse;
 import com.neoteric.HotelManningMahiDev.hotelGobalData.rooms.dto.*;
 import com.neoteric.HotelManningMahiDev.hotelGobalData.rooms.enitity.*;
@@ -26,6 +27,7 @@ public class RoomsService {
 
 
 @Transactional
+@TrackExecutionTime
 public ResponseEntity<ErrorResponse> addingRoom(RoomsDto roomsDto){
 
     conciergeRepository.save(modelMapper.map(roomsDto.getConcierge(), ConciergeEntity.class));
