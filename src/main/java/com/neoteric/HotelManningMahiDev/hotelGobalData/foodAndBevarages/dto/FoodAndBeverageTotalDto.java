@@ -1,0 +1,14 @@
+package com.neoteric.HotelManningMahiDev.hotelGobalData.foodAndBevarages.dto;
+
+import lombok.Data;
+
+@Data
+public class FoodAndBeverageTotalDto {
+private FoodAndBeverageDto foodAndBeverageDto;
+private EventsDto eventsDto;
+private FoodAndBeverageServiceOrCulinaryDto foodAndBeverageServiceOrCulinaryDto;
+private DCCAndCoverForBreakFastDto dccAndCoverForBreakFastDto;
+private DCCAndCoverForLunchDto dccAndCoverForLunchDto;
+private DCCAndCoverForDinnerDto dccAndCoverForDinnerDto;
+
+}

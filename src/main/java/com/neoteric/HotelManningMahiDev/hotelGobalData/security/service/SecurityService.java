@@ -3,7 +3,6 @@ package com.neoteric.HotelManningMahiDev.hotelGobalData.security.service;
 
 import com.neoteric.HotelManningMahiDev.aop.TrackExecutionTime;
 import com.neoteric.HotelManningMahiDev.exceptions.ApiResponse;
-import com.neoteric.HotelManningMahiDev.exceptions.ErrorResponse;
 import com.neoteric.HotelManningMahiDev.hotelGobalData.security.dto.SecurityDto;
 import com.neoteric.HotelManningMahiDev.hotelGobalData.security.enity.SecurityEntity;
 import com.neoteric.HotelManningMahiDev.hotelGobalData.security.repository.SecurityRepository;
@@ -17,20 +16,21 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class SecurityService {
 
-private final SecurityRepository securityRepository;
+    private final SecurityRepository securityRepository;
     private final ModelMapper modelMapper;
-public SecurityService(SecurityRepository securityRepository,ModelMapper modelMapper){
-    this.securityRepository =securityRepository;
-    this.modelMapper=modelMapper;
-}
+
+    public SecurityService(SecurityRepository securityRepository, ModelMapper modelMapper) {
+        this.securityRepository = securityRepository;
+        this.modelMapper = modelMapper;
+    }
 
 
-     @TrackExecutionTime
-     @Transactional
+    @TrackExecutionTime
+    @Transactional
     public ResponseEntity<ApiResponse> addingSecurity(@Valid SecurityDto securityDto) {
         SecurityEntity securityEntity = modelMapper.map(securityDto, SecurityEntity.class);
         securityRepository.save(securityEntity);
-    return new ResponseEntity<>(new ApiResponse(HttpStatus.OK.value(), "security is added"),HttpStatus.CREATED);
+        return new ResponseEntity<>(new ApiResponse(HttpStatus.OK.value(), "security is added"), HttpStatus.CREATED);
     }
 
 }
