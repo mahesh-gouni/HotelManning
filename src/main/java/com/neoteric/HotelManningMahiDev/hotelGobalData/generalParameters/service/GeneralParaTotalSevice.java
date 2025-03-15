@@ -2,14 +2,12 @@ package com.neoteric.HotelManningMahiDev.hotelGobalData.generalParameters.servic
 
 import com.neoteric.HotelManningMahiDev.aop.TrackExecutionTime;
 import com.neoteric.HotelManningMahiDev.exceptions.ApiResponse;
-import com.neoteric.HotelManningMahiDev.exceptions.ErrorResponse;
-//import com.neoteric.HotelManningMahiDev.generalParameters.dto.*;
-import com.neoteric.HotelManningMahiDev.hotelGobalData.generalParameters.controller.GeneralParaTotalController;
-import com.neoteric.HotelManningMahiDev.hotelGobalData.generalParameters.dto.*;
-//import com.neoteric.HotelManningMahiDev.generalParameters.repository.*;
+import com.neoteric.HotelManningMahiDev.hotelGobalData.generalParameters.dto.GeneralParaTotal;
+import com.neoteric.HotelManningMahiDev.hotelGobalData.generalParameters.dto.Leave;
+import com.neoteric.HotelManningMahiDev.hotelGobalData.generalParameters.dto.PublicAreaSites;
+import com.neoteric.HotelManningMahiDev.hotelGobalData.generalParameters.dto.RoomType;
 import com.neoteric.HotelManningMahiDev.hotelGobalData.generalParameters.entity.*;
 import com.neoteric.HotelManningMahiDev.hotelGobalData.generalParameters.repository.*;
-//import com.neoteric.HotelManningMahiDev.utilites.MapperPointer;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -22,16 +20,15 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class GeneralParaTotalSevice {
     private static final Logger logger = Logger.getLogger(GeneralParaTotalSevice.class.getName());
 
-   // private final MapperPointer mapper;
+    // private final MapperPointer mapper;
     private final ModelMapper modelMapper;
-  //  private final GeneralParaTotalRepository generalParaTotalRepository;
+    //  private final GeneralParaTotalRepository generalParaTotalRepository;
     private final GeneralParametersRepo generalParametersRepo;
     private final HotelInfoRepo hotelInfoRepo;
     private final LeaveRepo leaveRepo;
@@ -60,9 +57,6 @@ public class GeneralParaTotalSevice {
 //    }
 
 
-
-
-
 //    @Transactional
 //    public ResponseEntity<ErrorResponse> addGeneralParaTotal(@Valid GeneralParaTotal generalParaTotal) {
 //
@@ -83,60 +77,63 @@ public class GeneralParaTotalSevice {
 //        return new ResponseEntity<>(HttpStatus.CREATED);
 //    }
 
-  @Transactional
-  @TrackExecutionTime
- public ResponseEntity<ApiResponse> addGeneralParaTotal(@Valid GeneralParaTotal generalParaTotal) {
-generalParametersRepo.save(modelMapper.map(generalParaTotal.getGeneralParameters(), GeneralParametersEntity.class));
-hotelInfoRepo.save(modelMapper.map(generalParaTotal.getHotelInfo(), HotelInfoEntity.class));
+    @Transactional
+    @TrackExecutionTime
+    public ResponseEntity<ApiResponse> addGeneralParaTotal(@Valid GeneralParaTotal generalParaTotal) {
+        generalParametersRepo.save(modelMapper.map(generalParaTotal.getGeneralParameters(), GeneralParametersEntity.class));
+        hotelInfoRepo.save(modelMapper.map(generalParaTotal.getHotelInfo(), HotelInfoEntity.class));
 //      List<Leave> leave = generalParaTotal.getLeavesManager().getLeaves();
-      List<Leave> leaveList = generalParaTotal.getLeavesManager().getLeaves();
-      // Map Leave list to LeaveEntity list and ensure a fresh copy
-      List<LeaveEntity> leaveEntities = new ArrayList<>(modelMapper.map(leaveList, new TypeToken<List<LeaveEntity>>() {}.getType()));
+        List<Leave> leaveList = generalParaTotal.getLeavesManager().getLeaves();
+        // Map Leave list to LeaveEntity list and ensure a fresh copy
+        List<LeaveEntity> leaveEntities = new ArrayList<>(modelMapper.map(leaveList, new TypeToken<List<LeaveEntity>>() {
+        }.getType()));
 
-      // Create LeavesManagerEntity and set its fields
-      LeavesManagerEntity leavesManagerEntity = new LeavesManagerEntity();
-      leavesManagerEntity.setLeaves(leaveEntities);
-      leavesManagerEntity.setRelieverFactor(generalParaTotal.getLeavesManager().getRelieverFactor());
-      leavesManagerEntity.setTotal(generalParaTotal.getLeavesManager().getTotal());
+        // Create LeavesManagerEntity and set its fields
+        LeavesManagerEntity leavesManagerEntity = new LeavesManagerEntity();
+        leavesManagerEntity.setLeaves(leaveEntities);
+        leavesManagerEntity.setRelieverFactor(generalParaTotal.getLeavesManager().getRelieverFactor());
+        leavesManagerEntity.setTotal(generalParaTotal.getLeavesManager().getTotal());
 
-      // Set LeavesManagerEntity reference inside LeaveEntity to maintain bidirectional relationship
-      for (LeaveEntity leaveEntity : leaveEntities) {
-          leaveEntity.setLeavesManager(leavesManagerEntity);
-      }
-       leaveManagerRepo.save(leavesManagerEntity);
+        // Set LeavesManagerEntity reference inside LeaveEntity to maintain bidirectional relationship
+        for (LeaveEntity leaveEntity : leaveEntities) {
+            leaveEntity.setLeavesManager(leavesManagerEntity);
+        }
+        leaveManagerRepo.save(leavesManagerEntity);
 
-      leaveRepo.saveAll(new ArrayList<>(leaveEntities));
+        leaveRepo.saveAll(new ArrayList<>(leaveEntities));
 
 
+        List<PublicAreaSites> publicAreaSitesList = generalParaTotal.getPublicAreaSiteManager().getPublicAreaSites();
 
-    List<PublicAreaSites> publicAreaSitesList = generalParaTotal.getPublicAreaSiteManager().getPublicAreaSites();
+        List<PublicAreaSitesEntity> publicAreaSitesEntities = new ArrayList<>(modelMapper.map(publicAreaSitesList, new TypeToken<List<PublicAreaSitesEntity>>() {
+        }.getType()));
+        PublicAreaSiteManagerEntity publicAreaSiteManagerEntity = new PublicAreaSiteManagerEntity();
+        publicAreaSiteManagerEntity.setPublicAreaSites(publicAreaSitesEntities);
+        publicAreaSiteManagerEntity.setTotal(generalParaTotal.getPublicAreaSiteManager().getTotal());
 
-    List<PublicAreaSitesEntity> publicAreaSitesEntities = new ArrayList<>(modelMapper.map(publicAreaSitesList, new TypeToken<List<PublicAreaSitesEntity>>() {}.getType()));
-    PublicAreaSiteManagerEntity publicAreaSiteManagerEntity = new PublicAreaSiteManagerEntity();
-    publicAreaSiteManagerEntity.setPublicAreaSites(publicAreaSitesEntities);
-    publicAreaSiteManagerEntity.setTotal(generalParaTotal.getPublicAreaSiteManager().getTotal());
+        for (PublicAreaSitesEntity publicAreaSitesEntity : publicAreaSitesEntities) {
 
-    for (PublicAreaSitesEntity publicAreaSitesEntity : publicAreaSitesEntities) {
+            publicAreaSitesEntity.setSiteManager(publicAreaSiteManagerEntity);
+        }
+        publicAreaSitesManagerRepo.save(publicAreaSiteManagerEntity);
+        publicAreaSitesRepo.saveAll(new ArrayList<>(publicAreaSitesEntities));
 
-        publicAreaSitesEntity.setSiteManager(publicAreaSiteManagerEntity);
+
+        List<RoomType> roomTypes = generalParaTotal.getRoomTypeManager().getRoomTypes();
+
+        List<RoomTypeEntity> roomTypeEntities = new ArrayList<>(modelMapper.map(roomTypes, new TypeToken<List<RoomTypeEntity>>() {
+        }.getType()));
+        RoomTypeManagerEntity roomTypeManagerEntity = new RoomTypeManagerEntity();
+        roomTypeManagerEntity.setRoomTypes(roomTypeEntities);
+        roomTypeManagerEntity.setTotal(generalParaTotal.getRoomTypeManager().getTotal());
+
+        for (RoomTypeEntity roomTypeEntity : roomTypeEntities) {
+            roomTypeEntity.setRoomTypeManager(roomTypeManagerEntity);
+
+        }
+
+        roomTypeManagerRepo.save(roomTypeManagerEntity);
+        roomTypeRepo.saveAll(new ArrayList<>(roomTypeEntities));
+        return new ResponseEntity<>(new ApiResponse(HttpStatus.OK.value(), "created products"), HttpStatus.CREATED);
     }
-    publicAreaSitesManagerRepo.save(publicAreaSiteManagerEntity);
-    publicAreaSitesRepo.saveAll(new ArrayList<>(publicAreaSitesEntities));
-
-
-  List<RoomType> roomTypes =  generalParaTotal.getRoomTypeManager().getRoomTypes();
-
-    List<RoomTypeEntity> roomTypeEntities = new ArrayList<>(modelMapper.map(roomTypes, new TypeToken<List<RoomTypeEntity>>() {}.getType()));
-    RoomTypeManagerEntity roomTypeManagerEntity = new RoomTypeManagerEntity();
-    roomTypeManagerEntity.setRoomTypes(roomTypeEntities);
-    roomTypeManagerEntity.setTotal(generalParaTotal.getRoomTypeManager().getTotal());
-
-    for (RoomTypeEntity roomTypeEntity : roomTypeEntities) {
-        roomTypeEntity.setRoomTypeManager(roomTypeManagerEntity);
-
-    }
-    roomTypeManagerRepo.save(roomTypeManagerEntity);
-    roomTypeRepo.saveAll(new ArrayList<>(roomTypeEntities));
-       return new ResponseEntity<>(new ApiResponse(HttpStatus.OK.value(), "created products"), HttpStatus.CREATED);
-       }
 }
